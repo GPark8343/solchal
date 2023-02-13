@@ -34,7 +34,8 @@ body {
 }
 
 main {
-  padding: 10px;
+  max-width: 728px;
+  
   height: 80vh;
   margin: 10vh 0 10vh;
   overflow-y: scroll;
@@ -42,17 +43,7 @@ main {
   flex-direction: column;
 }
 
-main::-webkit-scrollbar {
-  width: 0.25rem;
-}
 
-main::-webkit-scrollbar-track {
-  background: #1e1e24;
-}
-
-main::-webkit-scrollbar-thumb {
-  background: #6649b8;
-}
 
 form {
   height: 10vh;
@@ -151,4 +142,12 @@ img {
   height: 40px;
   border-radius: 50%;
   margin: 2px 5px;
+}
+.row-full{
+  width: 100%;
+  position: fixed;
+  
+
+
+
 }

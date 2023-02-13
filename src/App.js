@@ -1,14 +1,18 @@
 import './App.css';
 
-import React, { useState, useRef }  from "react";
+import React, { useState, useRef } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import HomeIcon from '@mui/icons-material/Home';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ArchiveIcon from '@mui/icons-material/Archive';
+
+
+import AdbIcon from '@mui/icons-material/Adb';
+import CommentIcon from '@mui/icons-material/Comment';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import MedicationIcon from '@mui/icons-material/Medication';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 
 import firebase from 'firebase/compat/app';
@@ -47,13 +51,13 @@ function App() {
         <h1>Beddy</h1>
         <SearchIcon />
         <HomeIcon />
-        {/* <SignOut /> */}
+        <SignOut />
       </header>
       <section>
         {user ? <ChatRoom /> : <SignIn />}
-        <BottomAppBar />
+
       </section>
-     
+
     </div>
   );
 }
@@ -108,21 +112,23 @@ function ChatRoom() {
   }
 
   return (<>
+  
     <main>
+    <BottomAppBar />
+      {/* {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
 
-      {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-
-      <span ref={dummy}></span>
+      <span ref={dummy}></span> */}
 
     </main>
 
-    <form onSubmit={sendMessage}>
+    {/* <form onSubmit={sendMessage}>
 
       <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
 
       <button type="submit" disabled={!formValue}>🕊️</button>
 
-    </form>
+    </form> */}
+
   </>)
 }
 
@@ -145,19 +151,22 @@ function ChatMessage(props) {
 function BottomAppBar() {
   const [value, setValue] = React.useState(0);
   return (
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-        <BottomNavigation
-          showLabels
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        >
-          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Archive" icon={<ArchiveIcon />} />
-        </BottomNavigation>
-      </Paper>);
+    <Paper  elevation={1}>
+      <BottomNavigation sx={{width:'100%', position: 'absolute', bottom:0, maxWidth:728}}
+        showLabels
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+      >
+
+        <BottomNavigationAction label="Beddy" icon={<AdbIcon />} />
+        <BottomNavigationAction label="Chat" icon={<CommentIcon />} />
+        <BottomNavigationAction label="Add" icon={<AddCircleIcon />} />
+        <BottomNavigationAction label="Medication" icon={<MedicationIcon />} />
+        <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
+      </BottomNavigation>
+    </Paper>);
 }
 
 
