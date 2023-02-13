@@ -54,8 +54,7 @@ function App() {
         <SignOut />
       </header>
       <section>
-        {user ? <ChatRoom /> : <SignIn />}
-
+        {user ? <MainPage /> : <SignIn />}
       </section>
 
     </div>
@@ -85,7 +84,7 @@ function SignOut() {
 }
 
 
-function ChatRoom() {
+function MainPage() {
   const dummy = useRef();
   const messagesRef = firestore.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(25);
@@ -112,9 +111,16 @@ function ChatRoom() {
   }
 
   return (<>
-  
+
     <main>
-    <BottomAppBar />
+      <div className="start">
+      <img src={'https://www.freepnglogos.com/uploads/android-logo-png/android-logo-transparent-png-svg-vector-2.png'} />
+      <h1>김쿠갓님 반가워요</h1>
+      </div>
+      <div className="contents">
+      
+      </div>
+      <BottomAppBar />
       {/* {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
 
       <span ref={dummy}></span> */}
@@ -133,26 +139,26 @@ function ChatRoom() {
 }
 
 
-function ChatMessage(props) {
-  const { text, uid, photoURL } = props.message;
+// function ChatMessage(props) {
+//   const { text, uid, photoURL } = props.message;
 
-  const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+//   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
-  return (<>
-    <div className={`message ${messageClass}`}>
-      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
-      <p>{text}</p>
-    </div>
-  </>)
-}
+//   return (<>
+//     <div className={`message ${messageClass}`}>
+//       <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+//       <p>{text}</p>
+//     </div>
+//   </>)
+// }
 
 
 
 function BottomAppBar() {
   const [value, setValue] = React.useState(0);
   return (
-    <Paper  elevation={1}>
-      <BottomNavigation sx={{width:'100%', position: 'absolute', bottom:0, maxWidth:728}}
+    <Paper elevation={1}>
+      <BottomNavigation sx={{ width: '100%', position: 'absolute', bottom: 0, maxWidth: 728 }}
         showLabels
         value={value}
         onChange={(event, newValue) => {
